@@ -1,0 +1,23 @@
+{
+    // WHAT: TypeScript settings. WHY: tells the compiler how strict to be (comments are allowed in this file).
+    "compilerOptions": {
+        "target": "ES2020", // output modern JavaScript
+        "module": "ESNext", // use import/export modules
+        "moduleResolution": "bundler", // resolve imports the way Vite does
+        "strict": true, // turn on all strict type checks (catches most bugs)
+        "lib": [
+            "ES2020",
+            "DOM"
+        ], // built-in types: modern JS + browser APIs (fetch, localStorage)
+        "skipLibCheck": true, // don't type-check third-party .d.ts files (faster)
+        "noEmit": true, // only check types; Vite does the actual building
+        "types": [
+            "vite/client"
+        ] // gives types for import.meta.env
+    },
+    "include": [
+        "src/**/*.ts",
+        "src/**/*.vue",
+        "vite.config.ts"
+    ] // which files to check
+}

@@ -1,0 +1,242 @@
+/* WHAT: Global stylesheet. WHY: one place for the look of the whole app (dark teal cinema theme). Comments are per block. */
+
+/* Colour variables: change a colour once, it updates everywhere via var(--name) */
+:root {
+    --bg: #0e1a22;
+    --surface: #17262f;
+    --line: #2a3d49;
+    --text: #f1ece2;
+    --muted: #9fb0ba;
+    --gold: #f2b84b;
+    --err: #ff8a7a
+}
+
+/* border-box: width includes padding, which makes sizing predictable */
+* {
+    box-sizing: border-box
+}
+
+/* page background, text colour and default font */
+body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font: 16px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif
+}
+
+/* buttons and inputs don't inherit fonts by default; this fixes it */
+button,
+input {
+    font: inherit
+}
+
+/* top bar: logo left, account controls right; wraps on small screens */
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+    padding: 1rem 2rem;
+    border-bottom: 1px solid var(--line)
+}
+
+.brand {
+    font: 700 1.6rem Georgia, "Times New Roman", serif;
+    letter-spacing: .01em
+}
+
+.who {
+    display: flex;
+    align-items: center;
+    gap: .6rem;
+    flex-wrap: wrap
+}
+
+/* little pill showing the current plan */
+.badge {
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    border-radius: 999px;
+    padding: .1rem .7rem;
+    font-size: .85rem
+}
+
+/* form controls: input, normal button, and the highlighted "primary" button */
+input {
+    background: var(--surface);
+    color: var(--text);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: .5rem .8rem
+}
+
+button {
+    cursor: pointer;
+    border: 1px solid var(--line);
+    background: var(--surface);
+    color: var(--text);
+    border-radius: 6px;
+    padding: .5rem 1rem
+}
+
+button.primary {
+    background: var(--gold);
+    border-color: var(--gold);
+    color: #1b1405;
+    font-weight: 600
+}
+
+/* visible keyboard focus (accessibility) */
+button:focus-visible,
+input:focus-visible,
+.card:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 2px
+}
+
+main {
+    padding: 1.5rem 2rem 4rem
+}
+
+.msg {
+    color: var(--err);
+    margin: 0 0 1rem
+}
+
+/* error text */
+
+/* rail: heading + horizontally scrolling row of posters */
+.rail h2 {
+    font: 600 1.25rem Georgia, serif;
+    margin: 1.8rem 0 .7rem
+}
+
+.track {
+    display: flex;
+    gap: .8rem;
+    overflow-x: auto;
+    padding-bottom: .8rem;
+    scroll-snap-type: x proximity
+}
+
+/* each poster is a <button> reset to look like plain image + title */
+.card {
+    flex: 0 0 160px;
+    scroll-snap-align: start;
+    background: none;
+    border: 0;
+    padding: 0;
+    text-align: left;
+    color: inherit
+}
+
+.card img {
+    width: 160px;
+    height: 240px;
+    object-fit: cover;
+    border-radius: 6px;
+    display: block;
+    background: var(--surface)
+}
+
+.card span {
+    display: block;
+    margin-top: .35rem;
+    font-size: .9rem
+}
+
+.card:hover img {
+    outline: 2px solid var(--gold)
+}
+
+/* modal windows: dark full-screen backdrop + centred box */
+.overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(5, 10, 14, .8);
+    display: grid;
+    place-items: center;
+    padding: 1rem;
+    z-index: 10
+}
+
+.dialog {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    max-width: 760px;
+    width: 100%;
+    max-height: 92vh;
+    overflow: auto;
+    padding: 1.5rem
+}
+
+.close {
+    float: right
+}
+
+/* movie details layout: poster beside text, wraps on mobile */
+.detail {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap
+}
+
+.detail img {
+    width: 200px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 6px
+}
+
+.detail h3 {
+    margin: 0 0 .2rem;
+    font: 700 1.6rem Georgia, serif
+}
+
+.meta {
+    color: var(--muted);
+    margin: 0 0 .8rem
+}
+
+.actions {
+    display: flex;
+    gap: .6rem;
+    flex-wrap: wrap;
+    margin-top: 1rem
+}
+
+video {
+    width: 100%;
+    border-radius: 8px;
+    background: #000;
+    margin-top: 1rem
+}
+
+/* plan cards: responsive grid, gold border on the user's current plan */
+.plans {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem
+}
+
+.plan {
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 1rem
+}
+
+.plan.current {
+    border-color: var(--gold)
+}
+
+.plan b {
+    font-size: 1.1rem
+}
+
+.plan p {
+    color: var(--muted);
+    margin: .3rem 0 .8rem
+}

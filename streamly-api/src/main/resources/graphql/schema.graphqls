@@ -1,0 +1,41 @@
+enum Plan { BASIC STANDARD PREMIUM }
+
+type Movie {
+  id: ID!
+  title: String!
+  synopsis: String!
+  year: Int!
+  genre: String!
+  posterUrl: String!
+  "Public: trailers are free for everyone."
+  trailerUrl: String!
+}
+
+type Rail { id: ID! title: String! movies: [Movie!]! }
+
+type User {
+  id: ID!
+  email: String!
+  plan: Plan
+  subscribedUntil: String
+  active: Boolean!
+}
+
+type AuthPayload { token: String! user: User! }
+type PlanInfo { plan: Plan! priceMonthly: Float! description: String! }
+type Playback { movieId: ID! url: String! }
+
+type Query {
+  rails: [Rail!]!
+  movie(id: ID!): Movie
+  plans: [PlanInfo!]!
+  me: User
+  "Full movie stream. Requires an active subscription."
+  watch(movieId: ID!): Playback!
+}
+
+type Mutation {
+  login(email: String!): AuthPayload!
+  subscribe(plan: Plan!): User!
+  cancelSubscription: User!
+}

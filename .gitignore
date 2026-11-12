@@ -1,0 +1,22 @@
+# Java / Spring Boot
+streamly-api/target/
+*.class
+*.jar
+*.war
+
+# Vue / Node
+vue-app/node_modules/
+vue-app/dist/
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# IDE
+.idea/
+.vscode/
+*.iml
+
+# Mac
+.DS_Store
